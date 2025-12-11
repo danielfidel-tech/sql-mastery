@@ -140,8 +140,124 @@ SELECT
 FROM sales.employees;
 
 -- Combine data from employees & Customers into 1 table
+SELECT 
+	firstname,
+	lastname
+FROM sales.customers
+UNION
+SELECT 
+	firstname,
+	lastname
+FROM sales.employees
+ORDER BY firstname;
+
+-- Combine data from employees & Customers into 1 table
+SELECT 
+	firstname,
+	lastname
+FROM sales.customers
+UNION ALL
+SELECT 
+	firstname,
+	lastname
+FROM sales.employees
+ORDER BY firstname;
+
+-- Find the employees who are not customers
+SELECT
+	firstname,
+	lastname
+FROM sales.employees
+
+EXCEPT
+
+SELECT 
+	firstname,
+	lastname
+FROM sales.customers
+ORDER BY firstname;
+
+-- Find employees who are also customers (INTERSECT Set Operator)
+SELECT
+	firstname,
+	lastname
+FROM sales.employees
+
+INTERSECT
+
+SELECT 
+	firstname,
+	lastname
+FROM sales.customers
+ORDER BY firstname;
+
+-- Show both tables
 SELECT *
-FROM sales.employees;
+FROM sales.orders;
 
 SELECT *
-FROM sales.customers;
+FROM sales.ordersarchive;
+
+
+-- Select all the relevant columns 
+SELECT 
+    orderid,
+    productid,
+    customerid,
+    salespersonid,
+    orderdate,
+    shipdate,
+    orderstatus,
+    shipaddress,
+    billaddress,
+    quantity,
+    sales,
+    creationtime
+FROM sales.orders;
+
+SELECT
+    orderid,
+    productid,
+    customerid,
+    salespersonid,
+    orderdate,
+    shipdate,
+    orderstatus,
+    shipaddress,
+    billaddress,
+    quantity,
+    sales,
+    creationtime
+FROM	sales.ordersarchive;
+
+	
+-- Combine all orders into 1 report without duplicates (Remove dupes)
+SELECT 
+    orderid,
+    productid,
+    customerid,
+    salespersonid,
+    orderdate,
+    shipdate,
+    orderstatus,
+    shipaddress,
+    billaddress,
+    quantity,
+    sales,
+    creationtime
+FROM sales.orders
+UNION
+SELECT
+    orderid,
+    productid,
+    customerid,
+    salespersonid,
+    orderdate,
+    shipdate,
+    orderstatus,
+    shipaddress,
+    billaddress,
+    quantity,
+    sales,
+    creationtime
+FROM	sales.ordersarchive;
