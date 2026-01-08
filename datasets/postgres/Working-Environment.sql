@@ -260,4 +260,6 @@ SELECT
     quantity,
     sales,
     creationtime
-FROM	sales.ordersarchive;
+FROM	sales.ordersarchive
+ORDER BY orderid;
+
