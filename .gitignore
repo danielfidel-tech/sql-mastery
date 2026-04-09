@@ -1,0 +1,16 @@
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# VS Code / SQLTools
+*.session.sql
+.vscode/
+
+# SQL Server binary backups (not needed for PostgreSQL workflow)
+*.bak
+
+# Temporary / OS files
+Thumbs.db
+*.tmp
+*.log

@@ -1,71 +1,106 @@
-# SQL Ultimate Course
+# SQL Mastery
 
-Welcome to the **SQL Ultimate Course** repository! 🚀  
-This course will cover everything you need to master SQL!
-
+My personal learning repository working through the **SQL Ultimate Course** (by Data With Baraa), using **PostgreSQL** and **VS Code**.
 
 ---
 
-## 🛠️ Important Links & Tools:
+## Environment
 
-Everything is for Free!
-- **[Datasets](datasets/):** Access to the course dataset (csv files).
-- **[SQL Server Express](https://www.microsoft.com/en-us/sql-server/sql-server-downloads):** Lightweight server for hosting your SQL database.
-- **[SQL Server Management Studio (SSMS)](https://learn.microsoft.com/en-us/sql/ssms/download-sql-server-management-studio-ssms?view=sql-server-ver16):** GUI for managing and interacting with databases.
+| Tool | Version / Notes |
+|------|----------------|
+| Database | PostgreSQL (local) |
+| Editor | VS Code + SQLTools extension |
+| Extension | SQLTools PostgreSQL Driver |
+| OS | macOS |
+
+**Connection:** Local PostgreSQL instance via SQLTools (`Local Postgres`)
 
 ---
 
-## 📂 Repository Structure
+## Repository Structure
+
 ```
-sql-ultimate-course/
+sql-mastery/
 │
-├── datasets/                           # Raw datasets used for the course (ERP and CRM data)
+├── Working Environment/        # My personal practice files, organized by level
+│   ├── 1. Beginner/            # Complete
+│   └── 2. Intermediate/        # In progress
 │
-├── docs/                               # course documentation and architecture details
+├── datasets/                   # Source data for the course
+│   ├── postgres/               # PostgreSQL init scripts and working files
+│   ├── mysql/                  # MySQL init scripts
+│   ├── sql-server/             # SQL Server init scripts
+│   └── *.csv                   # Raw CSV data files
 │
-└── scripts/                            # All codes presented in the course
+├── docs/                       # Course PDFs and data model diagrams
+│
+├── scripts/                    # Course reference scripts (all sections)
+│
+├── scripts templates/          # Blank templates to fill in while following along
+│
+└── templates/                  # Personal syntax cheat sheets by level
+    ├── 1_SQL_Beginner_Syntax.sql
+    ├── 2_SQL_Intermidiate_Syntax.sql
+    └── 3_SQL_Advanced_Syntax.sql
 ```
 
 ---
 
-## ☕ Stay Connected
+## Progress Tracker
 
-Let's stay in touch! Feel free to connect with me on the following platforms:
+### Beginner — Complete
 
-[![YouTube](https://img.shields.io/badge/YouTube-red?style=for-the-badge&logo=youtube&logoColor=white)](http://bit.ly/3GiCVUE)
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://linkedin.com/in/baraa-khatib-salkini)
-[![Website](https://img.shields.io/badge/Website-000000?style=for-the-badge&logo=google-chrome&logoColor=white)](https://www.datawithbaraa.com)
-[![Newsletter](https://img.shields.io/badge/Newsletter-FF5722?style=for-the-badge&logo=substack&logoColor=white)](https://bit.ly/BaraaNewsletter)
-[![PayPal](https://img.shields.io/badge/PayPal-00457C?style=for-the-badge&logo=paypal&logoColor=white)](https://paypal.me/baraasalkini)
-[![Join](https://img.shields.io/badge/Join-FF0000?style=for-the-badge&logo=youtube&logoColor=white)](https://www.youtube.com/@datawithbaraa)
+| # | Section | Status |
+|---|---------|--------|
+| 1 | SQL Introduction | Done |
+| 2 | Query Data (SELECT) | Done |
+| 3 | Data Definition (DDL) | Done |
+| 4 | Data Manipulation (DML) | Done |
+| 5 | Filtering Data | Done |
+| 6 | JOINs | Done |
+| 7 | SET Operations | Done |
+| 8 | String Functions | Done |
 
-All Courses and their materials are completely free, and all I ask is your support through subscribing, liking, and commenting on my channel. Your engagement means the world to me and It help the channel!
-- ✅ **SQL Full Course:** [Course Link](https://youtu.be/SSKVgrwhzus) | [Download Materials](https://www.datawithbaraa.com/sql-introduction/sql-ultimate-course/) | [GIT Repo](https://github.com/DataWithBaraa/sql-ultimate-course)
-- ✅ **Tableau Full Course:** [Course Link](https://www.youtube.com/watch?v=K3pXnbniUcM) | [Download Materials](https://www.datawithbaraa.com/tableau/tableau-thank-you/) | [Public](https://public.tableau.com/app/profile/baraa.salkini/vizzes)
+### Intermediate — In Progress
 
-- ✅ **SQL Data Warehouse Project:** [Course Link](https://youtu.be/SSKVgrwhzus) | [Download Materials](https://www.datawithbaraa.com/sql-introduction/advanced-sql-project/) | [GIT Repo](https://github.com/DataWithBaraa/sql-data-warehouse-project)
-- ✅ **SQL Exploratory Data Analysis Project:** [Course Link](https://youtu.be/SSKVgrwhzus) | [Download Materials](https://www.datawithbaraa.com/sql-introduction/advanced-sql-analytics-project/) | [GIT Repo](https://github.com/DataWithBaraa/sql-data-analytics-project)
-- ✅ **SQL Advanced Data Analysis Project:** [Course Link](https://youtu.be/SSKVgrwhzus) | [Download Materials](https://www.datawithbaraa.com/sql-introduction/advanced-sql-analytics-project/) | [GIT Repo](https://github.com/DataWithBaraa/sql-data-analytics-project)
-  
-- ✅ **Tableau Sales Project:** [Course Link](https://www.youtube.com/watch?v=dahrmqT5GD4) | [Download Materials](https://datawithbaraa.substack.com/p/access-to-course-materials) | [Public](https://public.tableau.com/app/profile/baraa.salkini/vizzes)
-- ✅ **Tableau HR Project:** [Course Link](https://www.youtube.com/watch?v=UcGF09Awm4Y) | [Download Materials](https://datawithbaraa.substack.com/p/access-to-course-materials) | [Public](https://public.tableau.com/app/profile/baraa.salkini/vizzes)
-- ✅ **ChatGPT:** [Course Link](https://www.youtube.com/watch?v=LJLNfei4i-c) | [Download Materials](https://datawithbaraa.substack.com/p/access-to-course-materials)
+| # | Section | Status |
+|---|---------|--------|
+| 9 | NULL Functions | In Progress |
+| 10 | Number Functions | |
+| 11 | Date / Time Functions | |
+| 12 | Date / Time Formats | |
+| 13 | CASE Statements | |
+| 14 | Aggregate Functions | |
+| 15 | Window Functions — Basics | |
+| 16 | Window Functions — Aggregations | |
+| 17 | Window Functions — Ranking | |
+| 18 | Window Functions — Value Functions | |
+
+### Advanced — Not Started
+
+| # | Section | Status |
+|---|---------|--------|
+| 19 | Subqueries | |
+| 20 | Common Table Expressions (CTEs) | |
+| 21 | Views | |
+| 22 | Temporary Tables | |
+| 23 | Stored Procedures | |
+| 24 | Triggers | |
+| 25 | Indexes | |
+| 26 | Partitions | |
+| 27 | Performance Optimization | |
+| 28 | AI and SQL | |
 
 ---
 
-## 🛡️ License
+## Source Course
 
-This course is licensed under the [MIT License](LICENSE). You are free to use, modify, and share this project with proper attribution.
+**SQL Full Course for Beginners — From Zero to Hero** by [Data With Baraa](https://www.datawithbaraa.com)
+- [YouTube Course](https://youtu.be/SSKVgrwhzus)
+- [Original GitHub Repo](https://github.com/DataWithBaraa/sql-ultimate-course)
 
-## 🌟 About Me
+---
 
-Hi there! I'm **Baraa Khatib Salkini**, also known as **Data With Baraa**. I’m an IT professional and passionate YouTuber on a mission to share knowledge and make working with data enjoyable and engaging!
+## License
 
-Let's stay in touch! Feel free to connect with me on the following platforms:
-
-[![YouTube](https://img.shields.io/badge/YouTube-red?style=for-the-badge&logo=youtube&logoColor=white)](http://bit.ly/3GiCVUE)
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://linkedin.com/in/baraa-khatib-salkini)
-[![Website](https://img.shields.io/badge/Website-000000?style=for-the-badge&logo=google-chrome&logoColor=white)](https://www.datawithbaraa.com)
-[![Newsletter](https://img.shields.io/badge/Newsletter-FF5722?style=for-the-badge&logo=substack&logoColor=white)](https://bit.ly/BaraaNewsletter)
-[![PayPal](https://img.shields.io/badge/PayPal-00457C?style=for-the-badge&logo=paypal&logoColor=white)](https://paypal.me/baraasalkini)
-[![Join](https://img.shields.io/badge/Join-FF0000?style=for-the-badge&logo=youtube&logoColor=white)](https://www.youtube.com/@datawithbaraa)
+Original course materials licensed under [MIT License](LICENSE). Personal practice files are my own work.
