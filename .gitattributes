@@ -1,0 +1,2 @@
+# Tell GitHub Linguist to detect all .sql files as PLpgSQL (not TSQL)
+*.sql linguist-language=PLpgSQL
