@@ -72,3 +72,71 @@ SELECT
     score,
     COALESCE(score, 0) + 10 AS bonus_score
 FROM sales.customers;
+
+-- Data Aggregation
+
+SELECT *
+FROM sales.customers;
+
+SELECT *
+FROM sales.orders;
+
+SELECT
+    c.customerid, 
+    c.firstname, 
+    c.country, 
+    c.score
+FROM sales.customers c
+JOIN sales.orders o
+ON 
+    c.customerid = o.customerid;
+    
+-- FROM > WHAT > HOW
+
+-- Step 1: Join without handling NULLS
+SELECT
+    c.customerid,
+    c.firstname,
+    c.lastname,
+    c.score,
+    o.shipaddress
+FROM sales.customers c
+LEFT JOIN Sales.orders o 
+ON c.customerid = o.customerid
+AND COALESCE(c.lastname, '') = COALESCE(o.shipaddress, '');
+
+-- All customers with their orders, keeping all customers even with NULLs
+SELECT
+    c.customerid,
+    c.firstname,
+    c.lastname,
+    c.score,
+    o.shipaddress
+FROM sales.customers c
+LEFT JOIN sales.orders o
+ON c.customerid = o.customerid;
+
+-- Data Manipulation
+
+-- Task - Sort customers from lowest ot highest scores with nulls appearing last
+
+-- Step 1 - View table
+SELECT *
+FROM sales.customers;
+
+-- Step 2 - order by min to max
+SELECT 
+    customerid,
+    firstname,
+    lastname,
+    country,
+    score
+FROM sales.customers
+ORDER BY score ASC;
+
+-- Step 3 - Handle the Null
+SELECT
+    customerid,
+    score
+FROM sales.customers
+ORDER BY score DESC NULLS LAST;
