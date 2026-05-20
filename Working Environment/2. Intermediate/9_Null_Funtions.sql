@@ -140,3 +140,58 @@ SELECT
     score
 FROM sales.customers
 ORDER BY score DESC NULLS LAST;
+
+-- Practice questions
+
+-- Show tables
+SELECT *
+FROM sales.customers;
+
+-- Average scores by country
+SELECT
+    country,
+    ROUND(AVG(COALESCE(score, 0)) :: NUMERIC, 0) AS avg_score
+FROM sales.customers
+GROUP BY country
+ORDER BY avg_score DESC;
+
+-- 1. Total sales per customers (First name & total sales Desc order) Where what how
+
+-- Show sales table
+SELECT *
+FROM sales.customers;
+
+-- Show orders table
+SELECT *
+FROM sales.orders;
+
+-- Common row customer id
+SELECT
+    c.firstname,
+    c.customerid,
+    SUM(COALESCE(o.sales, 0)) AS total_sales
+FROM sales.customers c
+LEFT JOIN sales.orders o
+ON c.customerid = o.customerid
+GROUP BY c.customerid, c.firstname
+ORDER BY total_sales DESC;
+
+-- 2. Average Salary by department from Employees table
+
+-- Step 1: View tabl
+SELECT *
+FROM sales.employees;
+
+-- Step 2: salaries by department
+SELECT
+    department,
+    salary
+FROM sales.employees;
+
+-- Step 3: AVG salaries by department
+SELECT
+    department,
+    ROUND(AVG(COALESCE(salary, 0)):: DECIMAL, 0) AS avg_salary
+FROM sales.employees
+GROUP BY department
+ORDER BY avg_salary DESC;
