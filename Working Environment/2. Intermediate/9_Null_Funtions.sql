@@ -195,3 +195,17 @@ SELECT
 FROM sales.employees
 GROUP BY department
 ORDER BY avg_salary DESC;
+
+-- Sort customer from lowest to highest scores
+
+-- Step 1: Show tables
+SELECT *
+FROM sales.customers;
+
+-- Sort by score from highest to lowest
+SELECT
+    customerid,
+    COALESCE(score, 0)
+FROM sales.customers
+ORDER BY COALESCE(score, 0) ASC;
+ 
