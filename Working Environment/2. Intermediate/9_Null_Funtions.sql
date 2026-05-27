@@ -208,4 +208,227 @@ SELECT
     COALESCE(score, 0)
 FROM sales.customers
 ORDER BY COALESCE(score, 0) ASC;
- 
+
+
+-- Sort customers by Score with NUlls Appearing last
+
+-- Step 1: View table
+SELECT *
+FROM sales.customers;
+
+-- Step 2: Sort by score from lowest to highest
+SELECT
+    customerid,
+    COALESCE(score,0)
+FROM sales.customers
+ORDER BY COALESCE(score,0) DESC;
+
+-- Step 3: Sort by Score from highest ot lowest
+SELECT
+    customerid,
+    COALESCE(score, 0)
+FROM sales.customers
+ORDER BY COALESCE(score, 0) DESC;
+
+-- Aggregate Data 
+
+-- 1. What is the average score by country
+
+-- Step 1: View Tables
+SELECT *
+FROM sales.customers;
+
+-- Step 2: Calculate Average score
+SELECT 
+    country,
+    ROUND(AVG(COALESCE(score, 0)):: DECIMAL, 0) AS avg_score
+FROM sales.customers
+GROUP BY country
+ORDER BY avg_score DESC;
+
+-- 2. Total sales per customer. No orders should show zero
+
+-- Step 1 View Tables
+SELECT *
+FROM sales.orders;
+
+-- Step 2 Sales per customer
+SELECT
+    customerid,
+    ROUND(SUM(COALESCE(sales, 0)) :: DEC, 0) AS total_sales
+FROM sales.orders
+GROUP BY customerid
+ORDER BY total_sales DESC;
+
+
+-- 3. Average sale per product category, NULLs should show zero, Category and averages sales 
+
+-- Step 1: View able
+SELECT *
+FROM sales.orders;
+
+-- Step 2: AVG sale by productID
+SELECT
+    productid,
+    ROUND(AVG(COALESCE(sales, 0)):: DEC, 2) AS avg_sales
+FROM sales.orders
+GROUP BY productid
+ORDER BY avg_sales DESC;
+
+-- 1. Average score by country
+
+-- Step 1: Show tables
+SELECT  *
+FROM sales.customers;
+
+-- Step 2: Average score per country
+SELECT
+    country,
+    ROUND(AVG(score) ::DEC, 2) AS avg_score
+FROM sales.customers
+GROUP BY country
+ORDER BY avg_score DESC;
+
+-- 2. Total Sales per customer, Nulls as 0 (firstname, customerid, sales)
+
+-- Step 1: View Tables
+
+-- Sales.customers
+SELECT *
+FROM sales.customers;
+
+-- View sales.orders table
+SELECT *
+FROM sales.orders;
+
+-- Step 2 
+
+-- Phase 1 Join tables
+SELECT
+    c.customerid,
+    c.firstname,
+    o.sales
+FROM sales.customers c
+LEFT JOIN sales.orders o
+ON c.customerid = o.customerid;
+
+-- Phase 2 Data aggregation (total sales by customer ID)
+SELECT
+    c.customerid,
+    c.firstname,
+    SUM(COALESCE(o.sales, 0)) AS total_sales
+FROM sales.customers c
+LEFT JOIN sales.orders o
+ON c.customerid = o.customerid
+GROUP BY c.customerid, c.firstname
+ORDER BY total_sales DESC;
+
+-- 3. Average Sales per product Category (sales, Category, avg_sales)
+
+-- Step 1 see tables (category) (Productid Common Key)
+
+-- Products table
+SELECT *
+FROM sales.products;
+
+-- Orders table
+SELECT * 
+FROM sales.orders;
+
+-- Step 2 Join Data
+SELECT
+    p.category,
+    p.productid,
+    o.sales
+FROM sales.products p
+LEFT JOIN sales.orders o
+ON p.productid = o.productid;
+
+-- Step 3 Data Aggregation avg_sales
+SELECT
+    p.category,
+    ROUND(AVG(COALESCE(o.sales, 0)) :: DEC, 2) AS avg_sales
+FROM sales.products p
+LEFT JOIN sales.orders o
+ON p.productid = o.productid
+GROUP BY p.category
+ORDER BY avg_sales DESC;
+
+
+-- NULLIF
+
+-- Practice question Sale price by order
+
+-- Step 1: View tables
+SELECT *
+FROM sales.orders;
+
+-- Data Aggregation
+-- Step 1: View separated table
+SELECT
+    orderid,
+    quantity,
+    sales
+FROM sales.orders;
+
+-- Step 2: Calculate price
+SELECT
+    orderid,
+    sales,
+    quantity,
+    sales / NULLIF(quantity, 0) AS price
+FROM sales.orders
+ORDER BY price DESC NULLS LAST;
+
+-- IS NULL 
+SELECT 
+    orderid,
+    shipaddress
+FROM sales.orders
+WHERE shipaddress IS NULL;
+
+-- NULL Use case: Filtering data
+-- Pratice questions
+
+-- 1. Identify the customers who have no scores
+
+SELECT *
+FROM sales.customers
+WHERE score IS NULL;
+
+-- 2. Identify the customers who have scores
+SELECT *
+FROM sales.customers
+WHERE score IS NOT NULL;
+
+-- IS NULL Use Case ANTI JOINS P
+
+-- Practice questions
+
+-- 1. List all the details fro customer who have not placed any order
+
+-- Step 1 view tables
+SELECT *
+FROM sales.customers; # customerid, firstnames, lastname
+
+SELECT *
+FROM sales.orders; # customerid, quantity, sales
+
+SELECT
+    c.customerid,
+    c.firstname,
+    c.lastname,
+    o.quantity,
+    o.sales
+FROM sales.customers c
+LEFT JOIN sales.orders o
+ON c.customerid = o.customerid
+WHERE o.sales IS NULL;
+
+SELECT
+    c.*,
+    o.orderid
+FROM sales.customers c
+LEFT JOIN sales.orders o
+ON c.customerid = o.customerid
+WHERE o.customerid IS NULL;
