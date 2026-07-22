@@ -1,0 +1,41 @@
+-- SQL Task 1: Find total sales acrros all orders
+-- Step 1: View table
+SELECT *
+FROM sales.orders;
+
+-- Step 2: total sales accross orders
+SELECT
+    SUM(sales) AS total_sales
+FROM sales.orders;
+
+-- SQL Task 2: Find total sales for each product
+-- Step 1 View Table
+SELECT *
+FROM sales.orders;
+
+
+-- Step 2: total sales by productid
+SELECT
+    productid,
+    SUM(sales) AS total_sales
+FROM sales.orders
+GROUP BY productid
+ORDER BY total_sales DESC;
+
+-- SQL Task 3: Find total sales for each product plus orderid & order date
+-- Step 1: View table
+SELECT *
+FROM sales.orders;
+
+-- Step 2: Initiate the window function (Get row by row data)
+SELECT
+    SUM(sales) OVER()
+FROM sales.orders;
+
+-- Step 3: total sales, orderid & order date for reach product 
+SELECT
+    orderid,
+    orderdate,
+    productid,
+    SUM(sales) OVER(PARTITION BY productid) AS total_sales_by_product
+FROM sales.orders;
