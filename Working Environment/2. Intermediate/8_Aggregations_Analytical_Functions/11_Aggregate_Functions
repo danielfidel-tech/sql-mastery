@@ -1,0 +1,65 @@
+-- SQL Task : Find the total number of orders
+-- Step 1: View Table
+SELECT *
+FROM orders;
+
+-- Step 2: Find total orders
+SELECT 
+COUNT(*) AS total_orders
+FROM orders;
+
+-- SQL Task 2: Find the total sales of all orders
+-- Step 1: View tables
+SELECT *
+FROM orders;
+
+-- Step 2: Compute total sales
+SELECT
+    SUM(sales) AS total_sales
+FROM orders;
+
+-- SQL Task 3: Find the average sales of all orders
+-- Step 1: View tabels
+SELECT *
+FROM orders;
+
+-- Find average sales of all orders
+SELECT
+    ROUND(AVG(sales),2) AS avg_sales
+FROM orders;
+
+-- SQL Task 4: Find the highest sale of all orders
+-- Step 1: Find all all orders
+SELECT *
+FROM orders;
+
+-- Step 2: Find highest sales
+SELECT
+    ROUND(MAX(sales), 2) AS highest_sale
+FROM orders;
+
+-- SQL Task 5: Find the lowest sale of all orders
+-- Step 1:View table
+SELECT *
+FROM orders;
+
+-- Step 2: Find lowest sales
+SELECT
+    ROUND(MIN(sales), 2) AS lowest_sale
+FROM orders;
+
+-- SQL Task 6: Find the total number of sales, total sales, Average, highest and lowest sales
+
+-- Step 1: View table
+SELECT *
+FROM orders;
+
+-- Step 2: calculate all aggregate stats
+SELECT
+    COUNT(sales) AS number_of_sales,
+    SUM(sales) AS total_sales,
+    ROUND(AVG(sales), 0) AS avg_sales,
+    MAX(sales) AS highest_sales,
+    MIN(sales) AS lowest_sales
+FROM orders;
+
