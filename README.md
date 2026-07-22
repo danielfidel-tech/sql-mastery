@@ -65,13 +65,13 @@ sql-mastery/
 
 | # | Section | Status |
 |---|---------|--------|
-| 9 | NULL Functions | In Progress |
-| 10 | Number Functions | |
-| 11 | Date / Time Functions | |
-| 12 | Date / Time Formats | |
-| 13 | CASE Statements | |
-| 14 | Aggregate Functions | |
-| 15 | Window Functions — Basics | |
+| 9 | NULL Functions | Done |
+| 10 | Number Functions | Done |
+| 11 | Date / Time Functions | Done |
+| 12 | Date / Time Formats | Done |
+| 13 | CASE Statements | Done |
+| 14 | Aggregate Functions | Done |
+| 15 | Window Functions — Basics | In Progress |
 | 16 | Window Functions — Aggregations | |
 | 17 | Window Functions — Ranking | |
 | 18 | Window Functions — Value Functions | |
