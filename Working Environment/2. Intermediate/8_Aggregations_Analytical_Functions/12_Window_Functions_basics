@@ -39,3 +39,108 @@ SELECT
     productid,
     SUM(sales) OVER(PARTITION BY productid) AS total_sales_by_product
 FROM sales.orders;
+
+-- SQL Task 4: Find total sales for all orders plus order id & order date
+
+-- Step 1: View tables
+SELECT *
+FROM sales.orders;
+
+-- Step 2: total sales plus order & order date
+SELECT
+    orderid,
+    orderdate,
+    SUM(sales) OVER () AS total_sales
+FROM sales.orders;
+
+-- Step 3: Knowledge Check, compare window vs normal aggregate function
+SELECT
+    orderid,
+    orderdate,
+    SUM(sales) AS total_sales
+FROM sales.orders
+GROUP BY orderid;
+
+-- SQL Task 5: Find total sales for each plus order id & order date
+
+-- Step 1: Show tables
+SELECT *
+FROM sales.orders;
+
+-- Step 2: Total sales for each product plus order id & order date
+SELECT
+    orderid,
+    orderdate,
+    SUM(sales) OVER (PARTITION BY productid) AS total_sales_per_product
+FROM sales.orders;
+
+-- Step 3: Knowledge check, compare window function vs standard aggregate function
+SELECT
+    orderid,
+    orderdate,
+    SUM(sales) AS total_sales_by_product
+FROM sales.orders
+GROUP BY productid;
+
+
+-- SQL Task 6: Find total sales across all order as well as for each product plus order id & order date
+-- Step 1: View table
+SELECT *
+FROM sales.orders;
+
+-- Step 2: Total for all orders, total sales per product plus including order id & order date
+SELECT
+    orderid,
+    orderdate,
+    SUM(sales) OVER () AS total_sales,
+    SUM(sales) OVER (PARTITION BY productid) AS total_sales_per_product
+FROM sales.orders;
+
+-- Step 2.5: Total for all orders, total sales per product plus including order id & order date
+SELECT
+    orderid,
+    orderdate,
+    productid,
+    sales,
+    SUM(sales) OVER () AS total_sales,
+    SUM(sales) OVER (PARTITION BY productid) AS total_sales_per_product
+FROM sales.orders;
+
+-- SQL Task 7: Find total sales across all order as well as for each product, for each combination of product & order status plus order id & order date
+-- Step 1: View Table
+SELECT *
+FROM sales.orders;
+
+-- Step 2: total sales across all order as well as for each product, for each combination of product & order status plus order id & order date
+SELECT 
+    orderid,
+    orderdate,
+    SUM(sales) OVER () AS total_sales,
+    SUM(sales) OVER (PARTITION BY productid) total_sales_by_product,
+    SUM(sales) OVER (PARTITION BY productid, orderstatus) AS total_sales_by_productstatus
+FROM sales.orders;
+
+-- Step 2.5: total sales across all order as well as for each product, for each combination of product & order status plus order id & order date
+SELECT 
+    orderid,
+    orderdate,
+    productid,
+    orderstatus,
+    sales,
+    SUM(sales) OVER () AS total_sales,
+    SUM(sales) OVER (PARTITION BY productid) total_sales_by_product,
+    SUM(sales) OVER (PARTITION BY productid, orderstatus) AS total_sales_by_productstatus
+FROM sales.orders;
+
+-- SQL Task 8: Rank each order based on sales from highest to lowest, include orderid & orderdate
+-- Step 1: View table
+SELECT *
+FROM sales.orders;
+
+-- Step 2: Rank each order
+SELECT
+    orderid,
+    orderdate,
+    sales,
+    RANK() OVER (ORDER BY sales DESC) AS sales_ranked
+FROM sales.orders;
