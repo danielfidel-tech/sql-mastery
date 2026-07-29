@@ -144,3 +144,41 @@ SELECT
     sales,
     RANK() OVER (ORDER BY sales DESC) AS sales_ranked
 FROM sales.orders;
+
+-- WINDOW FRAME
+-- Practice Window Frame
+SELECT
+    orderid,
+    orderdate,
+    orderstatus,
+    sales,
+    SUM(sales) OVER ( PARTITION BY orderstatus ORDER BY orderdate
+    ROWS BETWEEN CURRENT ROW AND 2 FOLLOWING) AS total_sales 
+FROM sales.orders;
+
+-- SQL Task: Find the total sales for each order status, only for two products 101 and 102
+-- Step 1: View tables
+SELECT *
+FROM sales.orders;
+
+-- Step 2: total sales for each order status
+SELECT
+    productid,
+    orderstatus,
+    sales,
+    SUM(sales) OVER (PARTITION BY orderstatus) AS  total_sales_by_status
+FROM sales.orders
+WHERE productid IN (101,102);
+
+-- SQL Task: Rank customers based on their total sales
+-- Step 1: View table
+SELECT *
+FROM sales.orders;
+
+-- Step 2: Calculate total salestotal sales
+SELECT
+    customerid,
+    SUM(sales) AS total_sales,
+    RANK() OVER(ORDER BY SUM(sales) DESC) AS customer_rank
+FROM sales.orders
+GROUP BY customerid;
